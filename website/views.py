@@ -1,6 +1,6 @@
 # Store standard routes for user navigation
 
-# A blueprint has urls defined, way to separate app, views can be defined in multiple files
+# A blueprint has urls defined, way to separate app, views can be defined in multiple files to better organize
 from flask import Blueprint
 
 # Define the views blueprint
