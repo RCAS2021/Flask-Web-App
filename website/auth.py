@@ -12,6 +12,8 @@ from . import db
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 # Importing from flask login to enable password hashing
 from werkzeug.security import generate_password_hash, check_password_hash
+# Importing flask login_user, login_required, logout_user, current_user
+from flask_login import login_user, login_required, logout_user, current_user
 
 # Define the auth blueprint
 auth = Blueprint("auth", __name__)
@@ -20,12 +22,34 @@ auth = Blueprint("auth", __name__)
 # Methods adds the methods listed so the route can accept it, making it able to receive those methods
 @auth.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        # Getting the entered information
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        # Queries to encounter the first email match
+        user = User.query.filter_by(email=email).first()
+        # If user email was encountered
+        if user:
+            # Check if the user password equal to the password entered
+            if check_password_hash(user.password, password):
+                flash("Logged in successfully!", category="success")
+                # Login user
+                login_user(user, remember=True)
+                return redirect(url_for("views.home"))
+            flash("Incorrect password, try again.", category="error")
+        else:
+            flash("Email does not exist.", category="error")
+
     # Renders the template, can pass variables and therefore values
     return render_template("login.html", text="Testing", user="Pudha", boolean=True)
 
 @auth.route("/logout")
+# Makes sure that this page cannot be accessed if not logged in
+@login_required
 def logout():
-    return "<p>Logout</p>"
+    logout_user()
+    return redirect(url_for("auth.login"))
 
 @auth.route("/sign-up", methods=["GET", "POST"])
 def sign_up():
@@ -37,8 +61,13 @@ def sign_up():
         password2 = request.form.get("password2")
 
         # Restrictions and rules for adding user to database
+        # Checking if user already exists
+        # Queries to encounter the first email match
+        user = User.query.filter_by(email=email).first()
+        if user:
+            flash("Email already exists.", category="error")
         # Email too short
-        if len(email) < 4:
+        elif len(email) < 4:
             flash("Email must be longer than 3 characters", category="error")
         # First name too short
         elif len(first_name) < 2:
@@ -56,6 +85,8 @@ def sign_up():
             db.session.add(new_user)
             # Make the commit to the database
             db.session.commit()
+            # Log in user
+            login_user(user, remember=True)
             flash("Account created!", category="success")
             # Redirects to the mapped url
             return redirect(url_for("views.home"))

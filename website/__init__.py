@@ -3,6 +3,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 # Importing path module
 from os import path
+# Importing LoginManager
+from flask_login import LoginManager
 
 # Initializing database, imported on models
 db = SQLAlchemy()
@@ -29,10 +31,21 @@ def create_app():
     app.register_blueprint(auth, url_prefix="/")
 
     # Importing user and note to make sure to load the file before creating the database
-    from . import models
+    from .models import User, Note
 
     # New mode to create database
     with app.app_context():
         db.create_all()
+
+    login_manager = LoginManager()
+    # Where should flask redirect if user not logged in
+    login_manager.login_view = "auth.login"
+    # Tell which app is being used
+    login_manager.init_app(app)
+
+    # Telling Flask how to load the user, referencing the user by id
+    @login_manager.user_loader
+    def load_user(id):
+        return User.query.get(int(id))
 
     return app
