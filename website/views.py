@@ -3,7 +3,7 @@
 # A blueprint has urls defined, way to separate app, views can be defined in multiple files to better organize
 from flask import Blueprint
 
-# Define the views blueprint
+# Define the views blueprint (views = blueprint name)
 views = Blueprint("views", __name__)
 
 # Main page: /
