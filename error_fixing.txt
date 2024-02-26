@@ -12,3 +12,6 @@
 
 # JINJA expected expression
     On login.html, the expression for the elif was missing
+
+# Pylint accuses func.now() of not being callable
+    False positive, can be ignored
