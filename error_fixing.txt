@@ -15,3 +15,7 @@
 
 # Pylint accuses func.now() of not being callable
     False positive, can be ignored
+
+# db.create_all() unexpected keyword argument 'app'
+    SQLAlchemy no longer accepts an app argument to methods like create_all, instead it always requires an active flask application context.
+    No need to create create database function, sqlalchemy will not overwrite an existing file and the only time the database wouldn't be created is if it raised an error.
