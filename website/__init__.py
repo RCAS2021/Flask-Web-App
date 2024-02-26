@@ -1,10 +1,21 @@
 from flask import Flask
+# Importing SQLAlchemy for the database
+from flask_sqlalchemy import SQLAlchemy
+
+# Initializing database, imported on models
+db = SQLAlchemy()
+# Choosing database name
+DB_NAME = "database.db"
 
 def create_app():
     # Initialize flask
     app = Flask(__name__)
     # Secure the cookies and session data related to the website - provisory key for development, never share in production
     app.config["SECRET_KEY"] = 'provisory key for development, never share in production'
+    # Telling the flask app that we are using an database and where using sqlite3
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_NAME}"
+    # Initialize the database giving the app
+    db.init_app(app)
 
     # import the blueprints
     from .views import views
