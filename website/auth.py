@@ -4,8 +4,14 @@
 # render_template renders the html templates,
 # request works with HTTP request,
 # flash flashes a message
-
-from flask import Blueprint, render_template, request, flash
+# redirect is used to redirect to an url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+# Importing User
+from .models import User
+# Importing database
+from . import db
+# Importing from flask login to enable password hashing
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Define the auth blueprint
 auth = Blueprint("auth", __name__)
@@ -44,7 +50,13 @@ def sign_up():
         elif len(password1) < 7:
             flash("Password must be longer than 6 characters", category="error")
         else:
-            # Add user to database
+            # Defining user
+            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method="scrypt"))
+            # Add new user to database
+            db.session.add(new_user)
+            # Make the commit to the database
+            db.session.commit()
             flash("Account created!", category="success")
+            return redirect(url_for("views.home"))
 
     return render_template("sign_up.html")
