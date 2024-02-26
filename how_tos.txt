@@ -1,4 +1,24 @@
-# Compilation on how to use some things
+# Compilation on how to use or do some things
+    ## HOW TO DISABLE SINGLE LINE PYLINT ERROR MESSAGE (needs the #) 
+        # pylint: disable-next=error_code
+    
+    ## HOW TO DISABLE PYLINT ERROR MESSAGE ALL code
+        # Create .pylintrc
+        # Write
+            [MAIN]
+
+            disable= error_code, # error_message
+                error_code, # error_message
+                error_code, # error_message
+
+    ## HOW TO USE .gitignore
+        # Create .gitignore
+        # Add files to be ignored
+        # Example:
+            .vscode
+            website/__pycache__
+            website/database.db
+            
     ## HOW TO USE PYTHONIC EXPRESSIONS ON JINJA
     Showing how to use pythonic expressions
         ## Printing variables
@@ -23,3 +43,5 @@
         # Get the request data using request.form
             data = request.form
             print(data)
+    
+    
