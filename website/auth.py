@@ -1,13 +1,12 @@
 # Store standard routes for user authentication
-
-# A blueprint has urls defined, it is a way to separate app, views can be defined in multiple files, 
-# render_template renders the html templates,
-# request works with HTTP request,
-# flash flashes a message
 # Importing User
 from .models import User
 # Importing database
 from . import db
+# A blueprint has urls defined, it is a way to separate app, views can be defined in multiple files, 
+# render_template renders the html templates,
+# request works with HTTP request,
+# flash flashes a message
 # redirect is used to redirect to an url_for
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 # Importing from flask login to enable password hashing
