@@ -1,0 +1,4 @@
+Installed modules:
+Flask
+Flask-login
+Flask-sqlalchemy: Kind of a Wrapper for SQL, makes easier to create, delete, add, etc. database modules
