@@ -31,13 +31,8 @@ def create_app():
     # Importing user and note to make sure to load the file before creating the database
     from . import models
 
-    create_database(app)
+    # New mode to create database
+    with app.app_context():
+        db.create_all()
 
     return app
-
-def create_database(app):
-    # Check if database exists
-    if not path.exists("website/" + DB_NAME):
-        # pylint: disable-next=E1123
-        db.create_all(app=app)
-        print("Created Database!")
