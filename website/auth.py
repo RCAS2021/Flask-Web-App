@@ -57,6 +57,7 @@ def sign_up():
             # Make the commit to the database
             db.session.commit()
             flash("Account created!", category="success")
+            # Redirects to the mapped url
             return redirect(url_for("views.home"))
 
     return render_template("sign_up.html")
