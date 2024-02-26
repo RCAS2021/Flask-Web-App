@@ -1,13 +1,18 @@
 # Store standard routes for user authentication
 
-# A blueprint has urls defined, way to separate app, views can be defined in multiple files
-from flask import Blueprint, render_template
+# A blueprint has urls defined, it is a way to separate app, views can be defined in multiple files, 
+# render_template renders the html templates,
+# request works with HTTP request,
+# flash flashes a message
+
+from flask import Blueprint, render_template, request, flash
 
 # Define the auth blueprint
 auth = Blueprint("auth", __name__)
 
 # Creating routes for login, logout and sign_up
-@auth.route("/login")
+# Methods adds the methods listed so the route can accept it, making it able to receive those methods
+@auth.route("/login", methods=["GET", "POST"])
 def login():
     # Renders the template, can pass variables and therefore values
     return render_template("login.html", text="Testing", user="Pudha", boolean=True)
@@ -16,6 +21,30 @@ def login():
 def logout():
     return "<p>Logout</p>"
 
-@auth.route("/sign-up")
+@auth.route("/sign-up", methods=["GET", "POST"])
 def sign_up():
+    if request.method == "POST":
+        # Get informations from the request
+        email = request.form.get("email")
+        first_name = request.form.get("firstName")
+        password1 = request.form.get("password1")
+        password2 = request.form.get("password2")
+
+        # Restrictions and rules for adding user to database
+        # Email too short
+        if len(email) < 4:
+            flash("Email must be longer than 3 characters", category="error")
+        # First name too short
+        elif len(first_name) < 2:
+            flash("First name must be longer than 1 character", category="error")
+        # Passwords don't match
+        elif password1 != password2:
+            flash("Passwords don\'t match", category="error")
+        # Password too short
+        elif len(password1) < 7:
+            flash("Password must be longer than 6 characters", category="error")
+        else:
+            # Add user to database
+            flash("Account created!", category="success")
+
     return render_template("sign_up.html")
