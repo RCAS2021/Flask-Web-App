@@ -15,4 +15,4 @@ views = Blueprint("views", __name__)
 @login_required
 def home():
     # Renders the template, can pass variables and therefore values
-    return render_template("home.html")
+    return render_template("home.html", user=current_user)
