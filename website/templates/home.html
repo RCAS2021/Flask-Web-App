@@ -2,5 +2,27 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %}
 
 {% block content %}
-    <h1> This is the home page</h1>
+    <h1 align="center">Notes</h1>
+    <!-- Creating list group-->
+    <ul class="list-group list-group-flush" id="notes">
+        <!-- Going through the notes in user notes -->
+        {% for note in user.notes  %}
+            <!-- Display the notes data -->
+            <li class="list-group-item"> {{ note.data }}
+                <!-- Adding remove button -->
+                <!-- onClick, call the JavaScript deleteNote function, receiving note.id -->
+                <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+                    <!-- adding icon -->
+                    <span aria-hidden="true">&times;</span>
+                </button> </li>
+        {% endfor %}
+    </ul>
+    <!-- Creating form for the notes -->
+    <form method="POST">
+        <textarea name="note" id="note" class="form-control"></textarea>
+            <br />
+            <div align="center">
+                <button type="submit" class="btn btn-primary">Add Note</button>
+            </div>
+    </form>
 {% endblock %}
