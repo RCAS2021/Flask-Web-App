@@ -1,4 +1,11 @@
 # No Module Named Flask Error
     If vs code return no module named flask error, change the interpreter (if using windows, remember to run python instead of python3, causes same error)
+
 # Syntax error can crash the web-server
     Rerun the web-server to fix the issue
+
+# JINJA not finding html templates
+    The template folder needed to be renamed to templates
+
+# JINJA require tag-name
+    When using a comment on html, having the {% %} in it caused the problem
