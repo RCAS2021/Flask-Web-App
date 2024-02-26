@@ -1,10 +1,11 @@
 # CREATING DATABASE MODULES
+# Import the database
+from . import db
 # Helps logging users
 from flask_login import UserMixin
 # Enables sqlalchemy to automatically add the date time using now
 from sqlalchemy.sql import func
-# Import the database
-from . import db
+
 
 # Define the name of the object and have it inherit from db.Model
 class Note(db.Model):

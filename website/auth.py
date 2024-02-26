@@ -4,12 +4,12 @@
 # render_template renders the html templates,
 # request works with HTTP request,
 # flash flashes a message
-# redirect is used to redirect to an url_for
-from flask import Blueprint, render_template, request, flash, redirect, url_for
 # Importing User
 from .models import User
 # Importing database
 from . import db
+# redirect is used to redirect to an url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 # Importing from flask login to enable password hashing
 from werkzeug.security import generate_password_hash, check_password_hash
 
