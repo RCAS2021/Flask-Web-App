@@ -45,6 +45,33 @@
             </div>
         </nav>
 
+        <!-- Creating the visualization for the messages -->
+        <!-- Since it is created on the base template, it works for all templates -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            <!-- Tests if there is a message -->
+            {% if messages %}
+                <!-- for each message, create an alert with the message and a button to dismiss it, with an icon inside it using bootstrap -->
+                {% for category, message in messages %}
+                    {% if category == "error" %}
+                        <div class="alert alert-danger alert-dismissable fade show " role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    {% else %}
+                        <div class="alert alert-success alert-dismissable fade show " role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
         <!-- Creating a container -->
         <div class="container">
             <!-- Creating a block, doesn't need to be named content -->
