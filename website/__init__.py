@@ -1,6 +1,8 @@
 from flask import Flask
 # Importing SQLAlchemy for the database
 from flask_sqlalchemy import SQLAlchemy
+# Importing path module
+from os import path
 
 # Initializing database, imported on models
 db = SQLAlchemy()
@@ -26,4 +28,16 @@ def create_app():
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
 
+    # Importing user and note to make sure to load the file before creating the database
+    from . import models
+
+    create_database(app)
+
     return app
+
+def create_database(app):
+    # Check if database exists
+    if not path.exists("website/" + DB_NAME):
+        # pylint: disable-next=E1123
+        db.create_all(app=app)
+        print("Created Database!")
