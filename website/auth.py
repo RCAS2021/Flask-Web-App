@@ -1,4 +1,4 @@
-# Store standard routes for user navigation
+# Store standard routes for user authentication
 
 # A blueprint has urls defined, way to separate app, views can be defined in multiple files
 from flask import Blueprint
