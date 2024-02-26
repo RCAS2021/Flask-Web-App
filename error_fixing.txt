@@ -9,3 +9,6 @@
 
 # JINJA require tag-name
     When using a comment on html, having the {% %} in it caused the problem
+
+# JINJA expected expression
+    On login.html, the expression for the elif was missing
