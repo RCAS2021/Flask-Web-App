@@ -1,0 +1,25 @@
+# Compilation on how to use some things
+    ## HOW TO USE PYTHONIC EXPRESSIONS ON JINJA
+    Showing how to use pythonic expressions
+        ## Printing variables
+        {{ text }} 
+        {{ user + "s" }} 
+        
+        ## Writing an if statement
+            {% if boolean == True %}
+                Yes it is True!
+
+                {% elif boolean == False %}
+                No it is not True!
+                
+                {% else %}
+                No it is not True!
+            {% endif %}
+
+    ## HOW TO EXTRACT DATA ON ROUTE
+        # From flask import request
+            from flask import Blueprint, render_template, request
+        # The request will have the information about the request that was sent to access this route, ex: URL, Method
+        # Get the request data using request.form
+            data = request.form
+            print(data)
