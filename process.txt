@@ -1,5 +1,6 @@
 # Setting vscode    
     - Create folder website to store the website's code
+    - Create folder templates to store templates
     - Create file main.py, run to start the web-server
     - Create __init__.py in website, making it a package, running it automatically when imported
 
@@ -34,3 +35,4 @@
 
     - Create other routes on auth (login, logout and sign-up)
     - TESTING 004
+22:00
