@@ -1,0 +1,18 @@
+## TESTING 001
+    - Run main.py, if all correct, the flask web-server will be created and tell where it is running (default 127.0.0.1:5000)
+        - Will show page Not Found, the pages were not created yet, so it is running correctly
+
+## TESTING 002
+    - on views.py
+        - Set return to <h1>TEST</h1>
+    - Continue until testing 003
+
+## TESTING 003
+    - Rerun the web-server
+    - Enter the url the web-server is running on (default 127.0.0.1:5000)
+    - Will appear results of TESTING 002 (HOME_PAGE)
+
+## TESTING 004
+    - on auth.py functions:
+        - Set return to <h1>function_name</h1>
+    - Enter the url the web-server is running + "/route", for example: 127.0.0.1:5000/login
