@@ -42,7 +42,7 @@ def login():
             flash("Email does not exist.", category="error")
 
     # Renders the template, can pass variables and therefore values
-    return render_template("login.html", text="Testing", user="Pudha", boolean=True)
+    return render_template("login.html", user=current_user)
 
 @auth.route("/logout")
 # Makes sure that this page cannot be accessed if not logged in
@@ -91,4 +91,4 @@ def sign_up():
             # Redirects to the mapped url
             return redirect(url_for("views.home"))
 
-    return render_template("sign_up.html")
+    return render_template("sign_up.html", user=current_user)
