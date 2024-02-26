@@ -22,3 +22,9 @@
 
 # on auth.py db.session.add -> db is not defined
     from . import db
+
+# 'NoneType' object has no attribute 'is_active'
+    Changed 
+    login_user(user, remember=False) on auth.py.sign_up()
+                        to
+    login_user(user, remember=False) on auth.py.sign_up()
