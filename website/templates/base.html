@@ -18,16 +18,16 @@
             crossorigin="anonymous"
         />
 
-        <!-- Using jinja, enables using python inside {% %} -->
+        <!-- Using jinja, enables using python inside -->
         <!-- using block, override what is inside the block and endblock -->
-        <title>{% block title %}Home{% endblock%}</title>
+        <title>{% block title %}Home{% endblock %}</title>
     </head>
 
     <body>
         <!-- Creating bootstrap nav bar -->
         <nav class="navbar navbar-expang-lg navbar-dark bg-dark">
             <!-- Create navbar button -->
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
                 <!-- Setting icon -->
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -45,6 +45,13 @@
             </div>
         </nav>
 
+        <!-- Creating a container -->
+        <div class="container">
+            <!-- Creating a block, doesn't need to be named content -->
+            {% block content %}
+
+            {% endblock %}
+        </div>
 
         <!-- Loading the JavaScript related to bootstrap at the bottom-->
         <script

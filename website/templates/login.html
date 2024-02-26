@@ -1,0 +1,21 @@
+<!-- Using JINJA  to override base html template changing the title -->
+{% extends "base.html" %} {% block title %}Login{% endblock %}
+
+{% block content %}
+    <h1> This is the login page</h1>
+    <!-- Showing how to use pythonic expressions -->
+    <!-- {{ text }} 
+        {{ user + "s" }} 
+    -->
+    <!-- Writing an if statement -->
+    <!-- {% if boolean == True %}
+         Yes it is True!
+
+         {% elif %}
+
+         {% else %}
+         No it is not True!
+
+         {% endif %}
+    -->
+{% endblock %}
