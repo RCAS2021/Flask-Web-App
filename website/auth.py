@@ -85,7 +85,7 @@ def sign_up():
             # Make the commit to the database
             db.session.commit()
             # Log in user
-            login_user(new_user, remember=False)
+            login_user(new_user, remember=True)
             flash("Account created!", category="success")
             # Redirects to the mapped url
             return redirect(url_for("views.home"))

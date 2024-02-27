@@ -25,6 +25,6 @@
 
 # 'NoneType' object has no attribute 'is_active'
     Changed 
-    login_user(user, remember=False) on auth.py.sign_up()
+    login_user(user, remember=True) on auth.py.sign_up()
                         to
-    login_user(new_user, remember=False) on auth.py.sign_up()
+    login_user(new_user, remember=True) on auth.py.sign_up()
